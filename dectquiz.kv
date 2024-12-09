@@ -20,75 +20,69 @@
 
     BoxLayout:
         orientation: 'vertical'
-        padding: 20
-        spacing: 15
+        padding: dp(10)
+        spacing: dp(15)
 
         Label:
             text: f"Score: {root.current_score}/{root.total_questions}"
-            font_size: 22
+            font_size: '20sp'
             color: utils.get_color_from_hex('#333333')
             size_hint_y: None
-            height: 40
+            height: dp(40)
 
         ProgressBar:
             max: 15
             value: root.time_left
             size_hint_y: None
-            height: 10
+            height: dp(10)
             background_color: utils.get_color_from_hex('#cccccc')
             color: utils.get_color_from_hex('#4CAF50')
 
         Label:
             text: root.question_text
-            font_size: 24
+            font_size: '24sp'
             text_size: self.width, None
             size_hint_y: None
             height: self.texture_size[1]
             halign: 'center'
             color: utils.get_color_from_hex('#333333')
-            padding: 20, 20
+            padding: dp(20), dp(20)
 
         BoxLayout:
             orientation: 'vertical'
-            spacing: 15
-            size_hint_y: None
-            height: self.minimum_height
+            spacing: dp(10)
+            size_hint_y: 0.6
 
             CustomButton:
                 text: root.options[0] if len(root.options) > 0 else ''
                 on_release: root.check_answer(self.text)
-                size_hint_y: None
-                height: 60
-                font_size: 18
+                size_hint_y: 0.25
+                font_size: '18sp'
 
             CustomButton:
                 text: root.options[1] if len(root.options) > 1 else ''
                 on_release: root.check_answer(self.text)
-                size_hint_y: None
-                height: 60
-                font_size: 18
+                size_hint_y: 0.25
+                font_size: '18sp'
 
             CustomButton:
                 text: root.options[2] if len(root.options) > 2 else ''
                 on_release: root.check_answer(self.text)
-                size_hint_y: None
-                height: 60
-                font_size: 18
+                size_hint_y: 0.25
+                font_size: '18sp'
 
             CustomButton:
                 text: root.options[3] if len(root.options) > 3 else ''
                 on_release: root.check_answer(self.text)
-                size_hint_y: None
-                height: 60
-                font_size: 18
+                size_hint_y: 0.25
+                font_size: '18sp'
 
         Label:
             id: feedback
             text: ''
-            font_size: 22
+            font_size: '20sp'
             color: 0, 1, 0, 1
-            size_hint_y: None
-            height: 40
+            size_hint_y: 0.1
             opacity: 0
 
         CustomButton:
@@ -96,53 +90,34 @@
             text: 'Next Question'
             on_release: root.next_question()
             disabled: True
-            size_hint_y: None
-            height: 60
-            font_size: 20
+            size_hint_y: 0.15
+            font_size: '20sp'
 
 <ResultScreen>:
-    canvas.before:
-        Color:
-            rgba: utils.get_color_from_hex('#f0f0f0')
-        Rectangle:
-            pos: self.pos
-            size: self.size
-
     BoxLayout:
         orientation: 'vertical'
-        padding: 30
-        spacing: 20
+        padding: dp(20)
+        spacing: dp(10)
 
         Label:
-            text: 'Round Completed!'
-            font_size: 32
-            color: utils.get_color_from_hex('#333333')
+            text: f"Round Complete!"
+            font_size: '24sp'
+            color: 0, 0, 0, 1
 
         Label:
-            text: f'Round Score: {root.round_score}/5'
-            font_size: 24
-            color: utils.get_color_from_hex('#4CAF50')
+            text: f"Round Score: {root.round_score} / 5"
+            font_size: '20sp'
 
         Label:
-            text: f'Total Score: {root.total_score}/{root.total_questions}'
-            font_size: 24
-            color: utils.get_color_from_hex('#2196F3')
+            text: f"Total Score: {root.total_score}"
+            font_size: '20sp'
 
-        Widget:
+        Label:
+            text: f"Questions Answered: {root.total_questions}"
+            font_size: '20sp'
+
+        Button:
+            text: "Start New Round"
             size_hint_y: None
-            height: 40
-
-        CustomButton:
-            text: 'Start New Round'
+            height: dp(50)
             on_release: root.start_new_round()
-            size_hint_y: None
-            height: 60
-            font_size: 20
-
-        CustomButton:
-            text: 'Quit'
-            on_release: app.stop()
-            size_hint_y: None
-            height: 60
-            font_size: 20
-            background_color: utils.get_color_from_hex('#F44336')
