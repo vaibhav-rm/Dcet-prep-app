@@ -18,10 +18,10 @@ Welcome to the **DCET Prep App**, a community-driven initiative to help students
 work in progress (can't decide a home screen)
 
 ### Quiz in Progress
-![Quiz in Progress](screenshots/quiz.jpeg)
+<img src="./screenshots/quiz.jpeg" width="200">
 
 ### Result Screen
-![Result Screen](screenshots/result.jpeg)
+<img src="./screenshots/result.jpeg" width="200">
 
 ---
 
