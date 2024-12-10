@@ -1,3 +1,4 @@
+from questions import questions_list
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -8,33 +9,17 @@ from kivy.animation import Animation
 from kivy.clock import Clock
 import random
 
-class Question:
-    def __init__(self, question, options, correct_answer):
-        self.question = question
-        self.options = options
-        self.correct_answer = correct_answer
-
 class QuizScreen(Screen):
     question_text = StringProperty()
     options = ListProperty()
     current_score = NumericProperty(0)
     total_questions = NumericProperty(0)
     time_left = NumericProperty(15)
+    question_answered = False  
     
     def __init__(self, **kwargs):
         super(QuizScreen, self).__init__(**kwargs)
-        self.questions = [
-            Question("What is the capital of France?", ["London", "Berlin", "Paris", "Madrid"], "Paris"),
-            Question("Which planet is known as the Red Planet?", ["Venus", "Mars", "Jupiter", "Saturn"], "Mars"),
-            Question("What is the largest mammal?", ["Elephant", "Blue Whale", "Giraffe", "Hippopotamus"], "Blue Whale"),
-            Question("Who painted the Mona Lisa?", ["Vincent van Gogh", "Leonardo da Vinci", "Pablo Picasso", "Michelangelo"], "Leonardo da Vinci"),
-            Question("What is the chemical symbol for gold?", ["Au", "Ag", "Fe", "Cu"], "Au"),
-            Question("Which country is home to the kangaroo?", ["New Zealand", "South Africa", "Australia", "Brazil"], "Australia"),
-            Question("What is the largest ocean on Earth?", ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"], "Pacific Ocean"),
-            Question("Who wrote 'Romeo and Juliet'?", ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"], "William Shakespeare"),
-            Question("What is the capital of Japan?", ["Seoul", "Beijing", "Tokyo", "Bangkok"], "Tokyo"),
-            Question("Which element has the chemical symbol 'O'?", ["Osmium", "Oxygen", "Gold", "Silver"], "Oxygen")
-        ]
+        self.questions = questions_list  # Use imported questions
         self.start_new_round()
 
     def start_new_round(self):
