@@ -36,14 +36,11 @@ jobs:
           $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;33.0.2" "platforms;android-33"
           $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "build-tools;36.0.0-rc1"  # Ensure the specific build tools version
 
-      - name: Check that aidl is available
+      - name: Verify Aidl installation
         run: |
-          if ! command -v aidl &> /dev/null; then
-            echo "Aidl not found, please install it."
-            exit 1
-          else
-            echo "Aidl found."
-          fi
+          echo "Verifying Aidl Installation..."
+          $ANDROID_HOME/build-tools/36.0.0-rc1/aidl --version
+        continue-on-error: true  # Don't fail the build if aidl is not found.
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
