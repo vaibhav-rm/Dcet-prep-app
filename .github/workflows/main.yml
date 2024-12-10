@@ -30,8 +30,20 @@ jobs:
           rm sdk-tools.zip
           export ANDROID_HOME=$HOME/android-sdk
           export PATH=$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
+
+          # Install the required Android SDK packages, including build-tools and platform
           yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME --licenses
           $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;33.0.2" "platforms;android-33"
+          $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "build-tools;36.0.0-rc1"  # Ensure the specific build tools version
+
+      - name: Check that aidl is available
+        run: |
+          if ! command -v aidl &> /dev/null; then
+            echo "Aidl not found, please install it."
+            exit 1
+          else
+            echo "Aidl found."
+          fi
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
