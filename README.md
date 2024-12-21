@@ -48,7 +48,7 @@ Contributions of any kind are welcome!
 
 ### Current Contributors
 <a href="https://github.com/vaibhav-rm/Dcet-prep-app/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=vaibhav-rm/Dcet-prep-app" />
+  <img src="https://contrib.rocks/image?repo=Sagar-rm/Dcet-prep-app" />
 </a>
 
 
