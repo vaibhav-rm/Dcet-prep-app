@@ -16,5 +16,8 @@ questions_list = [
     Question("What is the largest ocean on Earth?", ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"], "Pacific Ocean"),
     Question("Who wrote 'Romeo and Juliet'?", ["Charles Dickens", "William Shakespeare", "Jane Austen", "Mark Twain"], "William Shakespeare"),
     Question("What is the capital of Japan?", ["Seoul", "Beijing", "Tokyo", "Bangkok"], "Tokyo"),
-    Question("Which element has the chemical symbol 'O'?", ["Osmium", "Oxygen", "Gold", "Silver"], "Oxygen")
+    Question("In a square matrix, if the elements above the principal diagonal are zero, then it is called",
+    ["Identity matrix", "Lower triangular matrix", "Upper triangular matrix", "Diagonal matrix"],
+    "Lower triangular matrix")
+
 ]
