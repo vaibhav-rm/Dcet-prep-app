@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = My Application
+title = Dcet Quiz App
 
 # (str) Package name
-package.name = myapp
+package.name = DcetPrep
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.test
@@ -29,7 +29,7 @@ source.include_exts = py,png,jpg,kv,atlas
 #source.exclude_patterns = license,images/*/*.jpg
 
 # (str) Application versioning (method 1)
-version = 0.1
+version = 0.3   
 
 # (str) Application versioning (method 2)
 # version.regex = __version__ = ['"](.*)['"]
@@ -44,10 +44,10 @@ requirements = python3,kivy
 # requirements.source.kivy = ../../kivy
 
 # (str) Presplash of the application
-#presplash.filename = %(source.dir)s/data/presplash.png
+#presplash.filename = %(source.dir)s/data/preplash.png
 
 # (str) Icon of the application
-#icon.filename = %(source.dir)s/data/icon.png
+#icon.filename = %(source.dir)s/data/preplash.png
 
 # (list) Supported orientations
 # Valid options are: landscape, portrait, portrait-reverse or landscape-reverse
@@ -61,7 +61,7 @@ orientation = portrait
 #
 
 #
-# author = © Copyright Info
+# author = © Vaibhav-rm Copyright Info
 
 # change the major version of python used by the app
 osx.python_version = 3

@@ -10,6 +10,112 @@
             size: self.size
             radius: [10,]
 
+<NavigationButton@CustomButton>:
+    size_hint_y: 0.1
+    font_size: '18sp'
+
+<HomeScreen>:
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex('#f0f0f0')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(20)
+
+        Label:
+            text: 'Welcome to DECT Quiz'
+            font_size: '32sp'
+            color: utils.get_color_from_hex('#333333')
+            size_hint_y: 0.1
+            valign: 'middle'
+
+        Image:
+            source: './data/image.png'  # Add your logo image
+            size_hint: 0.5, 0.4
+            pos_hint: {'center_x': 0.5}
+
+        NavigationButton:
+            text: 'Start Quiz'
+            on_release: app.root.current = 'start_quiz'
+
+        NavigationButton:
+            text: 'About'
+            on_release: app.root.current = 'about'
+
+<StartQuizScreen>:
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex('#f0f0f0')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(20)
+
+        Label:
+            text: 'Start a New Quiz'
+            font_size: '28sp'
+            color: utils.get_color_from_hex('#333333')
+            size_hint_y: 0.1
+            valign: 'middle'
+
+        Label:
+            text: 'Are you ready to test your knowledge?'
+            font_size: '18sp'
+            color: utils.get_color_from_hex('#666666')
+            size_hint_y: 0.1
+            valign: 'middle'
+
+        NavigationButton:
+            text: 'Begin Quiz'
+            on_release: app.root.current = 'quiz'
+
+        NavigationButton:
+            text: 'Back to Home'
+            on_release: app.root.current = 'home'
+
+<AboutScreen>:
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex('#f0f0f0')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(20)
+        spacing: dp(20)
+
+        Label:
+            text: 'About DECT Quiz'
+            font_size: '28sp'
+            color: utils.get_color_from_hex('#333333')
+            size_hint_y: 0.1
+            valign: 'middle'
+
+        Label:
+            text: 'DECT Quiz is an interactive quiz application designed to test your knowledge on various topics.'
+            font_size: '18sp'
+            color: utils.get_color_from_hex('#666666')
+            text_size: self.width, None
+            size_hint_y: 0.5
+            halign: 'center'
+            valign: 'middle'
+
+        NavigationButton:
+            text: 'Back to Home'
+            size_hint_y: 0.1
+            on_release: app.root.current = 'home'
+
 <QuizScreen>:
     canvas.before:
         Color:
@@ -27,14 +133,12 @@
             text: f"Score: {root.current_score}/{root.total_questions}"
             font_size: '20sp'
             color: utils.get_color_from_hex('#333333')
-            size_hint_y: None
-            height: dp(40)
+            size_hint_y: 0.05
 
         ProgressBar:
             max: 15
             value: root.time_left
-            size_hint_y: None
-            height: dp(10)
+            size_hint_y: 0.05
             background_color: utils.get_color_from_hex('#cccccc')
             color: utils.get_color_from_hex('#4CAF50')
 
@@ -42,8 +146,7 @@
             text: root.question_text
             font_size: '24sp'
             text_size: self.width, None
-            size_hint_y: None
-            height: self.texture_size[1]
+            size_hint_y: 0.3
             halign: 'center'
             color: utils.get_color_from_hex('#333333')
             padding: dp(20), dp(20)
@@ -94,30 +197,50 @@
             font_size: '20sp'
 
 <ResultScreen>:
+    canvas.before:
+        Color:
+            rgba: utils.get_color_from_hex('#f0f0f0')
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
     BoxLayout:
         orientation: 'vertical'
         padding: dp(20)
         spacing: dp(10)
 
         Label:
-            text: f"Round Complete!"
-            font_size: '24sp'
-            color: 0, 0, 0, 1
+            text: "Round Complete!"
+            font_size: '28sp'
+            color: utils.get_color_from_hex('#333333')
+            size_hint_y: 0.1
+            valign: 'middle'
 
         Label:
             text: f"Round Score: {root.round_score} / 5"
-            font_size: '20sp'
+            font_size: '24sp'
+            color: utils.get_color_from_hex('#333333')
+            size_hint_y: 0.1
+            valign: 'middle'
 
         Label:
             text: f"Total Score: {root.total_score}"
-            font_size: '20sp'
+            font_size: '24sp'
+            color: utils.get_color_from_hex('#333333')
+            size_hint_y: 0.1
+            valign: 'middle'
 
         Label:
             text: f"Questions Answered: {root.total_questions}"
-            font_size: '20sp'
+            font_size: '24sp'
+            color: utils.get_color_from_hex('#333333')
+            size_hint_y: 0.1
+            valign: 'middle'
 
-        Button:
+        NavigationButton:
             text: "Start New Round"
-            size_hint_y: None
-            height: dp(50)
             on_release: root.start_new_round()
+
+        NavigationButton:
+            text: "Back to Home"
+            on_release: app.root.current = 'home'
