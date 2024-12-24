@@ -155,7 +155,7 @@ questions_list = [
         "'S' in HTTPS stands for ______.",
         ["Safe", "Secure", "System", "Server"],
         "Secure"
-    )
+    ),
     Question(
         "Which Of The Following is a programing language?",
         ["Microsoft Word", "Adobe Photoshop", "Python", "Chrom"],
