@@ -156,4 +156,9 @@ questions_list = [
         ["Safe", "Secure", "System", "Server"],
         "Secure"
     )
+    Question(
+        "Which Of The Following is a programing language?",
+        ["Microsoft Word", "Adobe Photoshop", "Python", "Chrom"],
+        "Python"
+    )
 ]
