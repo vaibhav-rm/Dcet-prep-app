@@ -27,7 +27,7 @@ jobs:
       - name: Install Buildozer and dependencies
         run: |
           sudo apt update
-          sudo apt install -y python3-pip python3-setuptools python3-distutils git zip openjdk-11-jdk
+          sudo apt install -y python3-pip python3-setuptools git zip openjdk-11-jdk
           pip install --upgrade pip
           pip install buildozer cython
 
