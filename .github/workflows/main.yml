@@ -1,55 +1,51 @@
-name: CI
+name: Build Kivy APK
+
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
-  schedule:
-    - cron: '0 0 1,15 * *'
+    branches:
+      - main
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout the code
       - name: Checkout Code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      # Install dependencies
-      - name: Set up Build Environment
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y python3 python3-pip openjdk-11-jdk
-          pip install --upgrade buildozer
-
-      - name: Install Android SDK
-        run: |
-          mkdir -p $HOME/android-sdk
-          curl -o sdk-tools.zip https://dl.google.com/android/repository/commandlinetools-linux-9477386_latest.zip
-          unzip -q sdk-tools.zip -d $HOME/android-sdk
-          rm sdk-tools.zip
-          export ANDROID_HOME=$HOME/android-sdk
-          export PATH=$ANDROID_HOME/cmdline-tools/bin:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools:$PATH
-
-          # Install the required Android SDK packages, including build-tools and platform
-          yes | $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME --licenses
-          $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "platform-tools" "build-tools;33.0.2" "platforms;android-33"
-          $ANDROID_HOME/cmdline-tools/bin/sdkmanager --sdk_root=$ANDROID_HOME "build-tools;36.0.0-rc1"  # Ensure the specific build tools version
-
-      - name: Verify Aidl installation
-        run: |
-          echo "Verifying Aidl Installation..."
-          $ANDROID_HOME/build-tools/36.0.0-rc1/aidl --version
-        continue-on-error: true  # Don't fail the build if aidl is not found.
-
-      - name: Build with Buildozer
-        uses: ArtemSBulgakov/buildozer-action@v1
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v3
         with:
-          command: buildozer android debug
-          buildozer_version: master
+          python-version: 3.10
 
-      - name: Upload Artifacts
+      # Step 3: Install Buildozer and dependencies
+      - name: Install Buildozer
+        run: |
+          sudo apt update
+          sudo apt install -y python3-pip python3-setuptools git zip
+          pip install --upgrade pip
+          pip install buildozer cython
+
+      # Step 4: Install Android NDK and SDK
+      - name: Install Android Tools
+        run: |
+          sudo apt install -y openjdk-11-jdk
+          buildozer android clean
+          buildozer android update
+
+      # Step 5: Build the APK
+      - name: Build APK
+        run: |
+          buildozer -v android debug
+
+      # Step 6: Upload APK as an artifact
+      - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
-          name: AndroidBuild
+          name: kivy-app-debug.apk
           path: bin/*.apk
