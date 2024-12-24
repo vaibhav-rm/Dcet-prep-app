@@ -160,5 +160,25 @@ questions_list = [
         "Which Of The Following is a programing language?",
         ["Microsoft Word", "Adobe Photoshop", "Python", "Chrom"],
         "Python"
+    ),
+    Question(
+        "______ is not a data collection tool",
+        ["Word", "Focus Group Dicussion ", "Survey", "Quetionnarlo"],
+        "Word"
+    ),
+    Question(
+        "To Find third quartile in EXCEL,we use ___________ Formula",
+        ["=QUARTER(3,RANGE)", "=QUARTILE(3,RANGE)","=QUARTER(RANGE,3)","=QUARTILE(RANGE,3)"],
+        "=QUARTILE(RANGE,3)"
+    ),
+    Question(
+        "The Percentile devides a series into _________ equal parts",
+        ["Fifty", "twenty","ten","hundred"],
+        "hundred"
+    ),
+    Question(
+        "",
+        ["Fifty", "twenty","ten","hundred"],
+        "hundred"
     )
 ]
