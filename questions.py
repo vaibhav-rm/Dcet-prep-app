@@ -177,8 +177,23 @@ questions_list = [
         "hundred"
     ),
     Question(
+        "The EXCEL formula for 'MEAN' is ,
+        ["=MEDIAN(array of numbers)","=AVERAGE(array of numbers)","=MEAN(array of numbers)","=MODE(array of numbers"],
+        "=AVERAGE(array of numbers)"
+    ),
+    Question(
+        ""str" is a ",
+        ["Text Type", "Numeric Type","Binary Type","Sequence Type"],
+        "Text Type"
+    ),
+    Question(
+        "DoS is abbreviated as _______",
+        ["Denial Of Service", "Distribution of server","distribution of service","Denial of server"],
+        "Denial Of Service"
+    ),
+    Question(
         "",
-        ["Fifty", "twenty","ten","hundred"],
-        "hundred"
+        ["", "","",""],
+        ""
     )
 ]
