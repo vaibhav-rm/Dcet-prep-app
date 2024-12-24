@@ -177,12 +177,12 @@ questions_list = [
         "hundred"
     ),
     Question(
-        "The EXCEL formula for 'MEAN' is ,
+        "The EXCEL formula for 'MEAN' is",
         ["=MEDIAN(array of numbers)","=AVERAGE(array of numbers)","=MEAN(array of numbers)","=MODE(array of numbers"],
         "=AVERAGE(array of numbers)"
     ),
     Question(
-        ""str" is a ",
+        "str is a ",
         ["Text Type", "Numeric Type","Binary Type","Sequence Type"],
         "Text Type"
     ),
