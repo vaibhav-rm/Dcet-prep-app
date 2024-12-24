@@ -21,13 +21,13 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.12.3  # Use a valid Python version
+          python-version: 3.12 # Use Python 3.10 to avoid compatibility issues with Buildozer
 
-      # Step 3: Install Buildozer and dependencies
-      - name: Install Buildozer
+      # Step 3: Install dependencies
+      - name: Install Buildozer and dependencies
         run: |
           sudo apt update
-          sudo apt install -y python3-pip python3-setuptools git zip openjdk-11-jdk
+          sudo apt install -y python3-pip python3-setuptools python3-distutils git zip openjdk-11-jdk
           pip install --upgrade pip
           pip install buildozer cython
 
