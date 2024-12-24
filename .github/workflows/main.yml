@@ -38,7 +38,10 @@ jobs:
       # Step 4: Build the APK
       - name: Build APK
         run: |
+          yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+          yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;36.0.0-rc3"
           buildozer -v android debug
+
 
       # Step 5: Upload APK as an artifact
       - name: Upload APK
