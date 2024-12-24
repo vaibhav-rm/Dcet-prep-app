@@ -21,29 +21,22 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.10
+          python-version: 3.10  # Use a valid Python version
 
       # Step 3: Install Buildozer and dependencies
       - name: Install Buildozer
         run: |
           sudo apt update
-          sudo apt install -y python3-pip python3-setuptools git zip
+          sudo apt install -y python3-pip python3-setuptools git zip openjdk-11-jdk
           pip install --upgrade pip
           pip install buildozer cython
 
-      # Step 4: Install Android NDK and SDK
-      - name: Install Android Tools
-        run: |
-          sudo apt install -y openjdk-11-jdk
-          buildozer android clean
-          buildozer android update
-
-      # Step 5: Build the APK
+      # Step 4: Build the APK
       - name: Build APK
         run: |
           buildozer -v android debug
 
-      # Step 6: Upload APK as an artifact
+      # Step 5: Upload APK as an artifact
       - name: Upload APK
         uses: actions/upload-artifact@v3
         with:
