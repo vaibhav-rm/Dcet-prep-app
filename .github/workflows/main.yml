@@ -21,7 +21,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.10  # Use a valid Python version
+          python-version: 3.12.3  # Use a valid Python version
 
       # Step 3: Install Buildozer and dependencies
       - name: Install Buildozer
