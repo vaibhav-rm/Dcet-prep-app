@@ -32,6 +32,19 @@ jobs:
           pip install setuptools
           pip install buildozer cython
 
+      - name: Install Android SDK and Build Tools
+        run: |
+          mkdir -p ~/.buildozer/android/platform/android-sdk
+          cd ~/.buildozer/android/platform/android-sdk
+          wget -q https://dl.google.com/android/repository/commandlinetools-linux-8512546_latest.zip -O commandlinetools.zip
+          unzip -q commandlinetools.zip -d cmdline-tools
+          mkdir -p cmdline-tools/latest
+          mv cmdline-tools/cmdline-tools/* cmdline-tools/latest/
+          rm -rf commandlinetools.zip
+          yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+          yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --sdk_root=~/.buildozer/android/platform/android-sdk "build-tools;36.0.0-rc3" "platform-tools" "platforms;android-33"
+
+
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
 
@@ -39,7 +52,6 @@ jobs:
       - name: Build APK
         run: |
           yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
-          yes | ~/.buildozer/android/platform/android-sdk/cmdline-tools/latest/bin/sdkmanager "build-tools;36.0.0-rc3"
           buildozer -v android debug
 
 
