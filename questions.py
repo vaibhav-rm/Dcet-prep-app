@@ -192,8 +192,33 @@ questions_list = [
         "Denial Of Service"
     ),
     Question(
-        "",
-        ["", "","",""],
-        ""
+        "In python,_____ is used to end physical line or ignore the comments",
+        ["**", "#","&","\\"],
+        "#"
+    ),
+    Question(
+        "Which of the following is not crime?",
+        ["cryptography", "Denial of service","Man-in-middle attack","phising"],
+        "cryptography"
+    ),
+    Question(
+        "The earliest method used for planning project was ",
+        ["CPM", "PERT","Bar Chart","Milestone Chart"],
+        "Bar Chart"
+    ),
+    Question(
+        "The binary equivalent of decimal number 9 is?",
+        ["1001", "1000","1100","1010"],
+        "1001"
+    ),
+    Question(
+        "The type of project which requires minimum ammount of capital is",
+        ["crash project", "normal project","disaster project","consultant project"],
+        "normal project"
+    ),
+    Question(
+        "Cell is an ______ device",
+        ["electro-mechanical", "electro-chemical","electro-magnetic","electro-dynamic"],
+        "electro-chemical"
     )
 ]
