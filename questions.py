@@ -160,5 +160,65 @@ questions_list = [
         "Which Of The Following is a programing language?",
         ["Microsoft Word", "Adobe Photoshop", "Python", "Chrom"],
         "Python"
+    ),
+    Question(
+        "______ is not a data collection tool",
+        ["Word", "Focus Group Dicussion ", "Survey", "Quetionnarlo"],
+        "Word"
+    ),
+    Question(
+        "To Find third quartile in EXCEL,we use ___________ Formula",
+        ["=QUARTER(3,RANGE)", "=QUARTILE(3,RANGE)","=QUARTER(RANGE,3)","=QUARTILE(RANGE,3)"],
+        "=QUARTILE(RANGE,3)"
+    ),
+    Question(
+        "The Percentile devides a series into _________ equal parts",
+        ["Fifty", "twenty","ten","hundred"],
+        "hundred"
+    ),
+    Question(
+        "The EXCEL formula for 'MEAN' is ,
+        ["=MEDIAN(array of numbers)","=AVERAGE(array of numbers)","=MEAN(array of numbers)","=MODE(array of numbers"],
+        "=AVERAGE(array of numbers)"
+    ),
+    Question(
+        ""str" is a ",
+        ["Text Type", "Numeric Type","Binary Type","Sequence Type"],
+        "Text Type"
+    ),
+    Question(
+        "DoS is abbreviated as _______",
+        ["Denial Of Service", "Distribution of server","distribution of service","Denial of server"],
+        "Denial Of Service"
+    ),
+    Question(
+        "In python,_____ is used to end physical line or ignore the comments",
+        ["**", "#","&","\\"],
+        "#"
+    ),
+    Question(
+        "Which of the following is not crime?",
+        ["cryptography", "Denial of service","Man-in-middle attack","phising"],
+        "cryptography"
+    ),
+    Question(
+        "The earliest method used for planning project was ",
+        ["CPM", "PERT","Bar Chart","Milestone Chart"],
+        "Bar Chart"
+    ),
+    Question(
+        "The binary equivalent of decimal number 9 is?",
+        ["1001", "1000","1100","1010"],
+        "1001"
+    ),
+    Question(
+        "The type of project which requires minimum ammount of capital is",
+        ["crash project", "normal project","disaster project","consultant project"],
+        "normal project"
+    ),
+    Question(
+        "Cell is an ______ device",
+        ["electro-mechanical", "electro-chemical","electro-magnetic","electro-dynamic"],
+        "electro-chemical"
     )
 ]
