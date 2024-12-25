@@ -52,17 +52,12 @@ questions_list = [
         "Project evaluation"
     ),
     Question(
-        "In a square matrix, if the elements above the principal diagonal are zero, then it is called",
+        "In a square matrix, if the elements above the principal diagonal are zero, then it is called ______.",
         ["Identity matrix", "Lower triangular matrix", "Upper triangular matrix", "Diagonal matrix"],
         "Lower triangular matrix"
     ),
     Question(
-        "Repair of a dam in case of damage due to natural calamities is an example of?",
-        ["Normal project", "Crash project", "Risky project", "Disaster project"],
-        "Disaster project"
-    ),
-    Question(
-        "A project performed due to the effect of natural calamities is known as?",
+        "Repair of a dam in case of damage due to natural calamities is an example of ______?",
         ["Normal project", "Crash project", "Risky project", "Disaster project"],
         "Disaster project"
     ),
@@ -93,8 +88,8 @@ questions_list = [
     ),
     Question(
         "What is the correct syntax to change the background colour with CSS?",
-        ["background-color = 'purple';", "background – color : purple;", "background – color = orange", "change-background-color : purple"],
-        "background – color : purple;"
+        ["background-color = 'purple';", "background-color : purple;", "background-color = orange", "change-background-color : purple"],
+        "background-color : purple;"
     ),
     Question(
         "Which HTML tag gives a scrolling effect to a given text?",
@@ -155,211 +150,5 @@ questions_list = [
         "'S' in HTTPS stands for ______.",
         ["Safe", "Secure", "System", "Server"],
         "Secure"
-    ),
-    Question(
-        "Which Of The Following is a programing language?",
-        ["Microsoft Word", "Adobe Photoshop", "Python", "Chrom"],
-        "Python"
-    ),
-    Question(
-        "______ is not a data collection tool",
-        ["Word", "Focus Group Dicussion ", "Survey", "Quetionnarlo"],
-        "Word"
-    ),
-    Question(
-        "To Find third quartile in EXCEL,we use ___________ Formula",
-        ["=QUARTER(3,RANGE)", "=QUARTILE(3,RANGE)","=QUARTER(RANGE,3)","=QUARTILE(RANGE,3)"],
-        "=QUARTILE(RANGE,3)"
-    ),
-    Question(
-        "The Percentile devides a series into _________ equal parts",
-        ["Fifty", "twenty","ten","hundred"],
-        "hundred"
-    ),
-    Question(
-        "The EXCEL formula for 'MEAN' is",
-        ["=MEDIAN(array of numbers)","=AVERAGE(array of numbers)","=MEAN(array of numbers)","=MODE(array of numbers"],
-        "=AVERAGE(array of numbers)"
-    ),
-    Question(
-        "str is a ",
-        ["Text Type", "Numeric Type","Binary Type","Sequence Type"],
-        "Text Type"
-    ),
-    Question(
-        "DoS is abbreviated as _______",
-        ["Denial Of Service", "Distribution of server","distribution of service","Denial of server"],
-        "Denial Of Service"
-    ),
-    Question(
-        "In python,_____ is used to end physical line or ignore the comments",
-        ["**", "#","&","\\"],
-        "#"
-    ),
-    Question(
-        "Which of the following is not crime?",
-        ["cryptography", "Denial of service","Man-in-middle attack","phising"],
-        "cryptography"
-    ),
-    Question(
-        "The earliest method used for planning project was ",
-        ["CPM", "PERT","Bar Chart","Milestone Chart"],
-        "Bar Chart"
-    ),
-    Question(
-        "The binary equivalent of decimal number 9 is?",
-        ["1001", "1000","1100","1010"],
-        "1001"
-    ),
-    Question(
-        "The type of project which requires minimum ammount of capital is",
-        ["crash project", "normal project","disaster project","consultant project"],
-        "normal project"
-    ),
-    Question(
-        "Cell is an ______ device",
-        ["electro-mechanical", "electro-chemical","electro-magnetic","electro-dynamic"],
-        "electro-chemical"
     )
-    Question(
-    "If A = [[3, -2], [4, 1]] and A - B = [[5, -3], [4, 6]], then matrix B is ______.",
-    [
-        "[[-3, 2], [-4, -1]]",
-        "[[-5, 3], [-4, -6]]",
-        "[[-2, 1], [0, -5]]",
-        "[[2, -1], [0, 5]]"
-    ],
-    "[[-2, 1], [0, -5]]"
-)
-
-Question(
-    "If [[3, -4], [9, 2]] * [[x], [y]] = [[10], [2]], then the values of x and y are ______.",
-    [
-        "(2/3, -2)",
-        "(2, 2/3)",
-        "(-2, -2/3)",
-        "(-2/3, 2)"
-    ],
-    "(2/3, -2)"
-)
-
-Question(
-    "If A = [[-2, 6], [-2, 3]], then A^-1 is ______.",
-    [
-        "[[1/18, 3/6], [3/6, -2/2]]",
-        "[[3, -6], [-2, 2]]",
-        "[[3, -6], [-2, -3]]",
-        "[[1/6, -2/6], [-6/2, 3]]"
-    ],
-    "[[3, -6], [-2, 2]]"
-)
-Question(
-    "If x + y = 3 and 2x + 3y = 8 are the linear equations, then x and y are ______.",
-    [
-        "(1, -2)",
-        "(1, 2)",
-        "(-1, -2)",
-        "(1, 1)"
-    ],
-    "(1, 2)"
-)
-
-Question(
-    "If the straight line is 2y = 3x + 4, then the y-intercept is ______.",
-    [
-        "4",
-        "2",
-        "-4/3",
-        "-2"
-    ],
-    "-2"
-)
-
-Question(
-    "The acute angle of inclination made by the line 3x - 3y - 2 = 0 with the positive x-axis is ______.",
-    [
-        "135°",
-        "30°",
-        "45°",
-        "0°"
-    ],
-    "45°"
-)
-
-Question(
-    "The slope of a straight line passing through the points (1, 2) and (5, -3) is ______.",
-    [
-        "5/4",
-        "6",
-        "-1",
-        "-5/4"
-    ],
-    "-5/4"
-)
-
-Question(
-    "If the slope of the straight line is 3/2 and y-intercept is 5/2, then the equation of the straight line is ______.",
-    [
-        "3x + 2y - 5 = 0",
-        "3x - 2y - 5 = 0",
-        "3x + 2y + 5 = 0",
-        "3x - 2y + 5 = 0"
-    ],
-    "3x - 2y - 5 = 0"
-)
-Question(
-    "The line perpendicular to the straight line 5x - y + 1 = 0 and passing through the point (2, 3) is ______.",
-    [
-        "x - 5y - 17 = 0",
-        "x + 5y - 13 = 0",
-        "x + 5y - 17 = 0",
-        "x + 5y + 13 = 0"
-    ],
-    "x + 5y - 17 = 0"
-)
-
-Question(
-    "The value of cot 660° is ______.",
-    [
-        "-1/√3",
-        "√3",
-        "1/√3",
-        "-√3"
-    ],
-    "-1/√3"
-)
-
-Question(
-    "The value of cos 75° is ______.",
-    [
-        "(√3 + 1) / (2√2)",
-        "(√3 + 1) / (√3 - 1)",
-        "(√3 - 1) / (2√2)",
-        "(√3 - 1) / (√3 + 1)"
-    ],
-    "(√3 - 1) / (2√2)"
-)
-
-Question(
-    "If a ladder is inclined to the wall with base angle 30°, then the angle in radians is ______.",
-    [
-        "π/3",
-        "π/4",
-        "π/2",
-        "π/6"
-    ],
-    "π/6"
-)
-
-Question(
-    "If sin A = 3/5 and cos B = 12/13, then cos (A - B) is ______.",
-    [
-        "-33/65",
-        "63/65",
-        "-63/65",
-        "33/65"
-    ],
-    "33/65"
-)
-
 ]
