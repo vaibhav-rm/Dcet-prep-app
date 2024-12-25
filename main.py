@@ -1,4 +1,3 @@
-from questions import questions_list
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
@@ -8,6 +7,16 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.animation import Animation
 from kivy.clock import Clock
 import random
+from questions import questions_list
+
+class HomeScreen(Screen):
+    pass
+
+class StartQuizScreen(Screen):
+    pass
+
+class AboutScreen(Screen):
+    pass
 
 class QuizScreen(Screen):
     question_text = StringProperty()
@@ -19,7 +28,7 @@ class QuizScreen(Screen):
     
     def __init__(self, **kwargs):
         super(QuizScreen, self).__init__(**kwargs)
-        self.questions = questions_list  # Use imported questions
+        self.questions = questions_list
         self.start_new_round()
 
     def start_new_round(self):
@@ -54,10 +63,10 @@ class QuizScreen(Screen):
             self.round_score += 1
             self.current_score += 1
             self.ids.feedback.text = "Correct!"
-            self.ids.feedback.color = (0, 1, 0, 1)  # Green
+            self.ids.feedback.color = (0, 1, 0, 1)
         else:
             self.ids.feedback.text = f"Incorrect. The correct answer was: {question.correct_answer}"
-            self.ids.feedback.color = (1, 0, 0, 1)  # Red
+            self.ids.feedback.color = (1, 0, 0, 1)
         self.total_questions += 1
         self.ids.next_button.disabled = False
         self.animate_feedback()
@@ -90,9 +99,13 @@ class ResultScreen(Screen):
 class dectquiz(App):
     def build(self):
         sm = ScreenManager(transition=SlideTransition())
+        sm.add_widget(HomeScreen(name='home'))
+        sm.add_widget(StartQuizScreen(name='start_quiz'))
+        sm.add_widget(AboutScreen(name='about'))
         sm.add_widget(QuizScreen(name='quiz'))
         sm.add_widget(ResultScreen(name='result'))
         return sm
 
 if __name__ == '__main__':
     dectquiz().run()
+
