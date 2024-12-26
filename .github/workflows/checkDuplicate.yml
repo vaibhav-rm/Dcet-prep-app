@@ -1,0 +1,58 @@
+name: Check for Duplicate Questions
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-duplicates:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: pip install flake8
+
+    - name: Run duplicate check
+      run: |
+        python - <<EOF
+        import ast
+
+        # Parse questions.py to extract question strings
+        with open("questions.py", "r") as file:
+            content = file.read()
+            tree = ast.parse(content)
+
+        question_texts = []
+        duplicate_questions = []
+
+        # Traverse AST to find Question initializations
+        for node in ast.walk(tree):
+            if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id == "Question":
+                question_node = node.args[0]
+                if isinstance(question_node, ast.Constant):  # Ensure it's a string
+                    question_text = question_node.value
+                    if question_text in question_texts:
+                        duplicate_questions.append(question_text)
+                    else:
+                        question_texts.append(question_text)
+
+        if duplicate_questions:
+            print("Duplicate questions found:")
+            for question in duplicate_questions:
+                print(f"- {question}")
+            exit(1)
+        else:
+            print("No duplicate questions found!")
+        EOF
