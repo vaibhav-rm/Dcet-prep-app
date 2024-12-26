@@ -55,9 +55,13 @@ jobs:
           pip install --upgrade pip
           pip install --upgrade Cython buildozer
 
-      - name: Build APK with Buildozer
-        run: |
-          buildozer android debug
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          repository_root: master
+          workdir: .
+          buildozer_version: stable
 
       - name: Upload APK
         uses: actions/upload-artifact@v3
