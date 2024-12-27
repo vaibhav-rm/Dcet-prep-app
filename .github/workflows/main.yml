@@ -20,7 +20,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.8
+          python-version: 3.12
 
       - name: Install Buildozer Dependencies
         run: |
@@ -48,7 +48,8 @@ jobs:
             libavformat-dev \
             libavcodec-dev \
             libbz2-dev \
-            git
+            git \
+            openjdk-17-jdk
 
       - name: Install Python Dependencies
         run: |
