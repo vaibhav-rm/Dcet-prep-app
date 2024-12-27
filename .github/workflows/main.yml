@@ -53,7 +53,8 @@ jobs:
       - name: Install Python Dependencies
         run: |
           pip install --upgrade pip
-          pip install --upgrade Cython buildozer
+          pip install --upgrade Cython buildozer setuptools wheel python-for-android
+
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
