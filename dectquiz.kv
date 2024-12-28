@@ -82,6 +82,7 @@
             text: 'Back to Home'
             on_release: app.root.current = 'home'
 
+
 <AboutScreen>:
     canvas.before:
         Color:
@@ -99,22 +100,95 @@
             text: 'About DECT Quiz'
             font_size: '28sp'
             color: utils.get_color_from_hex('#333333')
-            size_hint_y: 0.1
+            size_hint_y: None
+            height: dp(40)
             valign: 'middle'
 
-        Label:
-            text: 'DECT Quiz is an interactive quiz application designed to test your knowledge on various topics.'
-            font_size: '18sp'
-            color: utils.get_color_from_hex('#666666')
-            text_size: self.width, None
-            size_hint_y: 0.5
-            halign: 'center'
-            valign: 'middle'
+        ScrollView:
+            size_hint_y: 0.8
+            do_scroll_x: False
+            do_scroll_y: True
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(15)
+                padding: [0, 0, 0, dp(20)]
+
+                Label:
+                    text: 'DECT Quiz is an interactive quiz application designed to test your knowledge on various topics.'
+                    font_size: '18sp'
+                    color: utils.get_color_from_hex('#666666')
+                    text_size: self.width, None
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    halign: 'center'
+                    valign: 'middle'
+
+                Label:
+                    text: f'Total Questions: {root.total_questions}'
+                    font_size: '18sp'
+                    color: utils.get_color_from_hex('#333333')
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    halign: 'left'
+
+                Label:
+                    text: 'Questions per Subject:'
+                    font_size: '18sp'
+                    color: utils.get_color_from_hex('#333333')
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    halign: 'left'
+
+                BoxLayout:
+                    id: subject_counts_box
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: dp(5)
+
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+
+                Label:
+                    text: 'GitHub Repository:'
+                    font_size: '18sp'
+                    color: utils.get_color_from_hex('#333333')
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    halign: 'left'
+
+                Button:
+                    text: 'https://github.com/vaibhav-rm/Dcet-prep-app'
+                    font_size: '16sp'
+                    size_hint_y: None
+                    height: dp(40)
+                    background_color: (0.2, 0.6, 1, 1)
+                    on_release: root.open_github_link()
+
+                Widget:
+                    size_hint_y: None
+                    height: dp(20)
+
+                Label:
+                    text: 'Made by Vaibhav\nGovernment Polytechnic Vijaypur'
+                    font_size: '16sp'
+                    color: utils.get_color_from_hex('#666666')
+                    size_hint_y: None
+                    height: self.texture_size[1]
+                    halign: 'center'
+                    valign: 'middle'
 
         NavigationButton:
             text: 'Back to Home'
-            size_hint_y: 0.1
+            size_hint_y: None
+            height: dp(50)
             on_release: app.root.current = 'home'
+
+
 
 <QuizScreen>:
     canvas.before:
@@ -244,3 +318,4 @@
         NavigationButton:
             text: "Back to Home"
             on_release: app.root.current = 'home'
+
