@@ -15,7 +15,7 @@ The `questions.py` file holds all the quiz questions in a structured format. Her
 
    ```python
     questions_list = [
-    Question("What is the capital of France?", ["London", "Berlin", "Paris", "Madrid"], "Paris")
+    Question("What is the capital of France?", ["London", "Berlin", "Paris", "Madrid"], "Paris", "Geography")
     ]
    ```
 
@@ -23,8 +23,8 @@ The `questions.py` file holds all the quiz questions in a structured format. Her
 
       ```python
     questions_list = [
-    Question("What is the capital of France?", ["London", "Berlin", "Paris", "Madrid"], "Paris"),
-    Question("Which planet is known as the Red Planet?", ["Venus", "Mars", "Jupiter", "Saturn"], "Mars")
+    Question("What is the capital of France?", ["London", "Berlin", "Paris", "Madrid"], "Paris", "Geography"),
+    Question("Which planet is known as the Red Planet?", ["Venus", "Mars", "Jupiter", "Saturn"], "Mars", "Space")
     ]
    ```
 3. Save the file and run the app to verify your questions (Don't forget to add a comma to the 2nd last Question in the list).
@@ -45,12 +45,12 @@ If you have a question paper in PDF format or other supported formats:
    Ensure every question object has the keys `question`, `options`, and `answer`.
 
    ```python
-    Question("Question goes here?", ["option1", "option2", "option3", "option4"], "correct Answer")
+    Question("Question goes here?", ["option1", "option2", "option3", "option4"], "correct Answer", "subject Name")
    ```
    
     Example:
     ```python
-    Question("What is the capital of France?", ["London", "Berlin", "Paris", "Madrid"], "Paris")
+    Question("What is the capital of France?", ["London", "Berlin", "Paris", "Madrid"], "Paris", "Geography")
    ```
 
 2. **Number of Options:** 

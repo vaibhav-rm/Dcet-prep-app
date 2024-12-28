@@ -1,13 +1,15 @@
+import webbrowser  # Add this import at the top of the file
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 from kivy.uix.label import Label
-from kivy.properties import StringProperty, ListProperty, NumericProperty
+from kivy.properties import StringProperty, ListProperty, NumericProperty, DictProperty
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.animation import Animation
 from kivy.clock import Clock
 import random
 from questions import questions_list
+from collections import Counter
 
 class HomeScreen(Screen):
     pass
@@ -16,7 +18,32 @@ class StartQuizScreen(Screen):
     pass
 
 class AboutScreen(Screen):
-    pass
+    subject_counts = DictProperty()
+    total_questions = NumericProperty()
+
+    def on_pre_enter(self):
+        self.update_subject_counts()
+
+    def update_subject_counts(self):
+        subjects = [q.subject for q in questions_list]
+        self.subject_counts = dict(Counter(subjects))
+        self.total_questions = len(questions_list)
+        self.ids.subject_counts_box.clear_widgets()
+        for subject, count in self.subject_counts.items():
+            self.ids.subject_counts_box.add_widget(
+                Label(
+                    text=f'{subject}: {count}',
+                    font_size='16sp',
+                    color=(0.4, 0.4, 0.4, 1),
+                    size_hint_y=None,
+                    height='30dp',
+                    halign='left',
+                    valign='middle'
+                )
+            )
+
+    def open_github_link(self):
+        webbrowser.open('https://github.com/vaibhav-rm/Dcet-prep-app')
 
 class QuizScreen(Screen):
     question_text = StringProperty()
