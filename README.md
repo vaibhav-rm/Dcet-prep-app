@@ -14,14 +14,16 @@ Welcome to the **DCET Prep App**, a community-driven initiative to help students
 
 ## 🖼️ Screenshots
 ### Home Screen
-![Home Screen](screenshots/home.png)
-work in progress (can't decide a home screen)
+<img src="./screenshots/home.png" width="200">
 
 ### Quiz in Progress
 <img src="./screenshots/quiz.jpeg" width="200">
 
 ### Result Screen
 <img src="./screenshots/result.jpeg" width="200">
+
+### About Screen
+<img src="./screenshots/about.png" width="200">
 
 ---
 
