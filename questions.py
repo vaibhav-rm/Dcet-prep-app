@@ -263,5 +263,11 @@ questions_list = [
         ["electro-mechanical", "electro-chemical","electro-magnetic","electro-dynamic"],
         "electro-chemical",
         "Fundamentals Of Electrical and Electronic Engineering"
+    ),
+        Question(
+        "What is a project?",
+        ["A temporary endeavor with a defined beginnning and end", "An ongoing activity with no specific end date","electro-magnetic","electro-dynamic"],
+        "A temporary endeavor with a defined beginnning and end",
+        "Project Management Skills"
     )
 ]
