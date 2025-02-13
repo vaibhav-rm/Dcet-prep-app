@@ -269,17 +269,5 @@ questions_list = [
         ["A temporary endeavor with a defined beginnning and end", "An ongoing activity with no specific end date","electro-magnetic","electro-dynamic"],
         "A temporary endeavor with a defined beginnning and end",
         "Project Management Skills"
-    ),
-            Question(
-        "",
-        ["A temporary endeavor with a defined beginnning and end", "An ongoing activity with no specific end date","electro-magnetic","electro-dynamic"],
-        "A temporary endeavor with a defined beginnning and end",
-        "Mathematics"
-    ),
-                Question(
-        "",
-        ["A temporary endeavor with a defined beginnning and end", "An ongoing activity with no specific end date","electro-magnetic","electro-dynamic"],
-        "A temporary endeavor with a defined beginnning and end",
-        "Mathematics"
     )
 ]
