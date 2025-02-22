@@ -39,6 +39,7 @@ Welcome to the **DCET Prep App**, a community-driven initiative to help students
 - [x] Add progress tracking.    
 - [ ] Release an Android APK.
 - [x] Responsive Design.
+- [ ] Use database instead of reading from file.
 - [ ] Login and register features for leaderboard.
 - [ ] Add support for importing question papers directly into the app.
 - [ ] Enhance the UI/UX for better mobile compatibility.
