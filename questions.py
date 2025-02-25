@@ -5,6 +5,33 @@ class Question:
         self.correct_answer = correct_answer
         self.subject = subject
 
+import sqlite3
+
+
+# Connect to SQLite database
+
+conn = sqlite3.connect('quiz_questions.db')
+
+cursor = conn.cursor()
+
+cursor.execute('''
+
+CREATE TABLE IF NOT EXISTS questions (
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    question TEXT NOT NULL,
+
+    options TEXT NOT NULL,
+
+    correct_answer TEXT NOT NULL,
+
+    subject TEXT NOT NULL
+
+)
+
+''')
+
 questions_list = [
     Question(
         "The project ______ relieves a project team from most regular work such as planning, tracking, and reporting responsibility?",
@@ -271,3 +298,27 @@ questions_list = [
         "Project Management Skills"
     )
 ]
+
+# Prepare data for insertion
+
+data_to_insert = [
+
+    (q.question, ','.join(q.options), q.correct_answer, q.subject) for q in questions_list
+
+]
+
+
+# Insert questions into the database
+
+cursor.executemany('''
+
+INSERT INTO questions (question, options, correct_answer, subject) VALUES (?, ?, ?, ?)
+
+''', data_to_insert)
+
+
+# Commit changes and close the connection
+
+conn.commit()
+
+conn.close()

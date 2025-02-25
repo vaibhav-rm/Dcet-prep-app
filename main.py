@@ -8,8 +8,31 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.animation import Animation
 from kivy.clock import Clock
 import random
-from questions import questions_list
+import sqlite3 
 from collections import Counter
+
+conn = sqlite3.connect('quiz_questions.db')
+cursor = conn.cursor()
+
+# Create a table for questions
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS questions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question TEXT NOT NULL,
+    options TEXT NOT NULL,
+    correct_answer TEXT NOT NULL,
+    subject TEXT NOT NULL
+)
+''')
+
+class Question:
+    def __init__(self, question, options, correct_answer, subject):
+        self.question = question
+        self.options = options
+        self.correct_answer = correct_answer
+        self.subject = subject
+
+
 
 class HomeScreen(Screen):
     pass
@@ -25,9 +48,22 @@ class AboutScreen(Screen):
         self.update_subject_counts()
 
     def update_subject_counts(self):
-        subjects = [q.subject for q in questions_list]
-        self.subject_counts = dict(Counter(subjects))
-        self.total_questions = len(questions_list)
+        conn = sqlite3.connect('quiz_questions.db')
+        cursor = conn.cursor()
+        
+        # Get total question count
+        cursor.execute('SELECT COUNT(*) FROM questions')
+        self.total_questions = cursor.fetchone()[0]
+
+        # Get subject counts
+        cursor.execute('SELECT subject, COUNT(*) FROM questions GROUP BY subject')
+        rows = cursor.fetchall()
+        conn.close()
+
+        # Update subject_counts dictionary
+        self.subject_counts = {row[0]: row[1] for row in rows}
+
+        # Clear existing widgets and add new ones
         self.ids.subject_counts_box.clear_widgets()
         for subject, count in self.subject_counts.items():
             self.ids.subject_counts_box.add_widget(
@@ -45,6 +81,7 @@ class AboutScreen(Screen):
     def open_github_link(self):
         webbrowser.open('https://github.com/vaibhav-rm/Dcet-prep-app')
 
+
 class QuizScreen(Screen):
     question_text = StringProperty()
     options = ListProperty()
@@ -55,14 +92,24 @@ class QuizScreen(Screen):
     
     def __init__(self, **kwargs):
         super(QuizScreen, self).__init__(**kwargs)
-        self.questions = questions_list
+        self.questions = self.load_questions_from_db()  # Load questions from the database
         self.start_new_round()
+
+    def load_questions_from_db(self):
+        conn = sqlite3.connect('quiz_questions.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT question, options, correct_answer, subject FROM questions')
+        rows = cursor.fetchall()
+        conn.close()
+        
+        # Convert rows to Question objects
+        return [Question(question=row[0], options=row[1].split(','), correct_answer=row[2], subject=row[3]) for row in rows]
 
     def start_new_round(self):
         self.current_questions = random.sample(self.questions, 5)
         self.current_question_index = 0
         self.round_score = 0
-        self.load_question()
+        self.load_question()  # Call load_question to display the first question
 
     def load_question(self):
         if self.current_question_index < len(self.current_questions):
@@ -106,7 +153,7 @@ class QuizScreen(Screen):
         self.current_question_index += 1
         self.ids.feedback.text = ""
         self.ids.next_button.disabled = True
-        self.load_question()
+        self.load_question()  # Call load_question to load the next question
 
 class ResultScreen(Screen):
     round_score = NumericProperty(0)
@@ -136,3 +183,5 @@ class dectquiz(App):
 if __name__ == '__main__':
     dectquiz().run()
 
+conn.commit()
+conn.close()
