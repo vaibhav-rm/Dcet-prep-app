@@ -8,12 +8,9 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.animation import Animation
 from kivy.clock import Clock
 import random
-import sqlite3  # Add this import at the top of the file
+import sqlite3 
 from collections import Counter
 
-import sqlite3
-
-# Connect to SQLite database (or create it if it doesn't exist)
 conn = sqlite3.connect('quiz_questions.db')
 cursor = conn.cursor()
 
@@ -36,9 +33,6 @@ class Question:
         self.subject = subject
 
 
-# Commit changes and close the connection
-conn.commit()
-conn.close()
 
 class HomeScreen(Screen):
     pass
@@ -189,3 +183,5 @@ class dectquiz(App):
 if __name__ == '__main__':
     dectquiz().run()
 
+conn.commit()
+conn.close()
