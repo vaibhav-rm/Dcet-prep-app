@@ -8,7 +8,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.animation import Animation
 from kivy.clock import Clock
 import random
-from questions import questions_list
+import sqlite3  # Add this import at the top of the file
 from collections import Counter
 
 import sqlite3
@@ -54,9 +54,22 @@ class AboutScreen(Screen):
         self.update_subject_counts()
 
     def update_subject_counts(self):
-        subjects = [q.subject for q in questions_list]
-        self.subject_counts = dict(Counter(subjects))
-        self.total_questions = len(questions_list)
+        conn = sqlite3.connect('quiz_questions.db')
+        cursor = conn.cursor()
+        
+        # Get total question count
+        cursor.execute('SELECT COUNT(*) FROM questions')
+        self.total_questions = cursor.fetchone()[0]
+
+        # Get subject counts
+        cursor.execute('SELECT subject, COUNT(*) FROM questions GROUP BY subject')
+        rows = cursor.fetchall()
+        conn.close()
+
+        # Update subject_counts dictionary
+        self.subject_counts = {row[0]: row[1] for row in rows}
+
+        # Clear existing widgets and add new ones
         self.ids.subject_counts_box.clear_widgets()
         for subject, count in self.subject_counts.items():
             self.ids.subject_counts_box.add_widget(
@@ -74,7 +87,6 @@ class AboutScreen(Screen):
     def open_github_link(self):
         webbrowser.open('https://github.com/vaibhav-rm/Dcet-prep-app')
 
-import sqlite3  # Add this import at the top of the file
 
 class QuizScreen(Screen):
     question_text = StringProperty()
@@ -103,9 +115,18 @@ class QuizScreen(Screen):
         self.current_questions = random.sample(self.questions, 5)
         self.current_question_index = 0
         self.round_score = 0
-        self.load_questions_from_db
+        self.load_question()  # Call load_question to display the first question
 
-    # The rest of the QuizScreen class remains unchanged
+    def load_question(self):
+        if self.current_question_index < len(self.current_questions):
+            question = self.current_questions[self.current_question_index]
+            self.question_text = question.question
+            self.options = question.options
+            self.time_left = 15
+            self.start_timer()
+        else:
+            self.manager.current = 'result'
+            self.manager.get_screen('result').update_score(self.round_score)
 
     def start_timer(self):
         Clock.schedule_interval(self.update_timer, 1)
@@ -138,7 +159,7 @@ class QuizScreen(Screen):
         self.current_question_index += 1
         self.ids.feedback.text = ""
         self.ids.next_button.disabled = True
-        self.load_question()
+        self.load_question()  # Call load_question to load the next question
 
 class ResultScreen(Screen):
     round_score = NumericProperty(0)
