@@ -11,6 +11,35 @@ import random
 from questions import questions_list
 from collections import Counter
 
+import sqlite3
+
+# Connect to SQLite database (or create it if it doesn't exist)
+conn = sqlite3.connect('quiz_questions.db')
+cursor = conn.cursor()
+
+# Create a table for questions
+cursor.execute('''
+CREATE TABLE IF NOT EXISTS questions (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question TEXT NOT NULL,
+    options TEXT NOT NULL,
+    correct_answer TEXT NOT NULL,
+    subject TEXT NOT NULL
+)
+''')
+
+class Question:
+    def __init__(self, question, options, correct_answer, subject):
+        self.question = question
+        self.options = options
+        self.correct_answer = correct_answer
+        self.subject = subject
+
+
+# Commit changes and close the connection
+conn.commit()
+conn.close()
+
 class HomeScreen(Screen):
     pass
 
@@ -45,6 +74,8 @@ class AboutScreen(Screen):
     def open_github_link(self):
         webbrowser.open('https://github.com/vaibhav-rm/Dcet-prep-app')
 
+import sqlite3  # Add this import at the top of the file
+
 class QuizScreen(Screen):
     question_text = StringProperty()
     options = ListProperty()
@@ -55,25 +86,26 @@ class QuizScreen(Screen):
     
     def __init__(self, **kwargs):
         super(QuizScreen, self).__init__(**kwargs)
-        self.questions = questions_list
+        self.questions = self.load_questions_from_db()  # Load questions from the database
         self.start_new_round()
+
+    def load_questions_from_db(self):
+        conn = sqlite3.connect('quiz_questions.db')
+        cursor = conn.cursor()
+        cursor.execute('SELECT question, options, correct_answer, subject FROM questions')
+        rows = cursor.fetchall()
+        conn.close()
+        
+        # Convert rows to Question objects
+        return [Question(question=row[0], options=row[1].split(','), correct_answer=row[2], subject=row[3]) for row in rows]
 
     def start_new_round(self):
         self.current_questions = random.sample(self.questions, 5)
         self.current_question_index = 0
         self.round_score = 0
-        self.load_question()
+        self.load_questions_from_db
 
-    def load_question(self):
-        if self.current_question_index < len(self.current_questions):
-            question = self.current_questions[self.current_question_index]
-            self.question_text = question.question
-            self.options = question.options
-            self.time_left = 15
-            self.start_timer()
-        else:
-            self.manager.current = 'result'
-            self.manager.get_screen('result').update_score(self.round_score)
+    # The rest of the QuizScreen class remains unchanged
 
     def start_timer(self):
         Clock.schedule_interval(self.update_timer, 1)
